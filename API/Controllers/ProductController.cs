@@ -23,8 +23,8 @@ namespace API.Controllers
          }
 
         [HttpGet]
-        [Route("{id:guid}")]
-        public IActionResult GetProduct([FromRoute] Guid id)
+        [Route("{id:int}")]
+        public IActionResult GetProduct([FromRoute] int id)
         {
             
             var product = dbContext.Products.Find(id);
@@ -54,8 +54,8 @@ namespace API.Controllers
          }
 
         [HttpPut]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> UpdateProduct([FromRoute] Guid id,UpdatProductRequest updatProductRequest)
+        [Route("{id:int}")]
+        public async Task<IActionResult> UpdateProduct([FromRoute] int id,UpdatProductRequest updatProductRequest)
         {
 
             var product = await dbContext.Products.FindAsync(id);
@@ -74,8 +74,8 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> DeleteProduct([FromRoute] Guid id)
+        [Route("{id:int}")]
+        public async Task<IActionResult> DeleteProduct([FromRoute] int id)
         {
             
             var product = dbContext.Products.FindAsync(id);

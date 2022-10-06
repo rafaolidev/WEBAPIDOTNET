@@ -6,6 +6,6 @@ namespace API.Models
         public string Name {get; set;}
         public int Quantidade {get; set;}
 
-        public List<Movimentacao> Movimentacaos {get; set;}
+        public ICollection<Movimentacao> Movimentacaos {get; set;}
     }
 }

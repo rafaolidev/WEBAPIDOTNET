@@ -23,8 +23,8 @@ namespace API.Controllers
          }
 
         [HttpGet]
-        [Route("{id:guid}")]
-        public IActionResult GetUser([FromRoute] Guid id)
+        [Route("{id:int}")]
+        public IActionResult GetUser([FromRoute] int id)
         {
             
             var user = dbContext.Users.Find(id);
@@ -54,13 +54,13 @@ namespace API.Controllers
             await dbContext.Users.AddAsync(user);
             await dbContext.SaveChangesAsync();
 
-            return Ok(eita);
+            return Ok(user);
             
          }
 
         [HttpPut]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> UpdateUser([FromRoute] Guid id,UpdateUserRequest updateUserRequest)
+        [Route("{id:int}")]
+        public async Task<IActionResult> UpdateUser([FromRoute] int id,UpdateUserRequest updateUserRequest)
         {
 
             var user = await dbContext.Users.FindAsync(id);
@@ -80,8 +80,8 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
+        [Route("{id:int}")]
+        public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
             
             var user = dbContext.Users.FindAsync(id);

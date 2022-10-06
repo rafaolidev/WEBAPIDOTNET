@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tJfn4nz0BL5IaGqvOQPvpI543Mc8VNoDFZb7Y44SNvamN8Lpe8wrnLE/iMMRlZk3SBVExDB69t7EHKyFBQ4j8g==",
+  "dgSpecHash": "U5fxeKlQeSriGDGsWGZMwbwm2a85wpFSTk/4NyJ5PVxZV39sxjYrD/qr8pTXgzcQtIDzjmlO9PlvzsO2G2T5MQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Rafael\\Desktop\\projeto faculdade\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\Rafael\\Desktop\\gitfacauldade\\WEBAPIDOTNET\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Rafael\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Rafael\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

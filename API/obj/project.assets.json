@@ -2262,11 +2262,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rafael\\Desktop\\projeto faculdade\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\Rafael\\Desktop\\gitfacauldade\\WEBAPIDOTNET\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\Rafael\\Desktop\\projeto faculdade\\API\\API.csproj",
+      "projectPath": "C:\\Users\\Rafael\\Desktop\\gitfacauldade\\WEBAPIDOTNET\\API\\API.csproj",
       "packagesPath": "C:\\Users\\Rafael\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rafael\\Desktop\\projeto faculdade\\API\\obj\\",
+      "outputPath": "C:\\Users\\Rafael\\Desktop\\gitfacauldade\\WEBAPIDOTNET\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Rafael\\AppData\\Roaming\\NuGet\\NuGet.Config"

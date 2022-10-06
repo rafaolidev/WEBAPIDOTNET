@@ -23,8 +23,8 @@ namespace API.Controllers
          }
 
         [HttpGet]
-        [Route("{id:guid}")]
-        public IActionResult GetMovimentacao([FromRoute] Guid id)
+        [Route("{id:int}")]
+        public IActionResult GetMovimentacao([FromRoute] int id)
         {
             
             var movimentacao = dbContext.Movimentacaos.Find(id);
@@ -87,8 +87,8 @@ namespace API.Controllers
 
 
         [HttpDelete]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> DeleteMovimentacao([FromRoute] Guid id)
+        [Route("{id:int}")]
+        public async Task<IActionResult> DeleteMovimentacao([FromRoute] int id)
         {
             
             var movimentacao = dbContext.Movimentacaos.FindAsync(id);
