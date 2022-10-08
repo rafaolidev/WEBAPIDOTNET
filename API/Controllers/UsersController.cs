@@ -81,14 +81,15 @@ namespace API.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] int id)
+        public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
         {
             
             var user = dbContext.Users.FindAsync(id);
 
             if (user != null)
             {   
-                var removedUser = user;
+                
+                dbContext.Remove(user);
                 await dbContext.SaveChangesAsync();
                 return Ok("Usuário deletado com sucesso");
             }

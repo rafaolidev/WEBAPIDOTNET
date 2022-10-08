@@ -81,7 +81,8 @@ namespace API.Controllers
             var product = dbContext.Products.FindAsync(id);
 
             if (product != null)
-            {   
+            {       
+                dbContext.Remove(product);
                 await dbContext.SaveChangesAsync();
                 return Ok(product);
             }

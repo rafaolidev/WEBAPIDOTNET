@@ -95,6 +95,7 @@ namespace API.Controllers
 
             if (movimentacao != null)
             {   
+                dbContext.Remove(movimentacao);
                 await dbContext.SaveChangesAsync();
                 return Ok();
             }
