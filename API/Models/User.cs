@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 namespace API.Models
 {
     public class User
@@ -10,6 +11,8 @@ namespace API.Models
         public string Email {get; set;}
         public string Senha {get; set;}
 
+        
+       [IgnoreDataMember]
         public List<Movimentacao> Movimentacaos {get; set;}
     }
 }
