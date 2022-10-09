@@ -1,5 +1,4 @@
 # WEBAPIDOTNET 
-https://image.pngaaa.com/393/592393-middle.png
 
 <img src="https://image.pngaaa.com/393/592393-middle.png" width="100">
 
