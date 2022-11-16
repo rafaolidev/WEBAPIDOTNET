@@ -3,12 +3,12 @@ using API.Data;
 using API.Models;
 
 namespace API.Controllers
-{   
+{
     [ApiController]
     [Route("api/[controller]")]
     public class MovimentacaoController :Controller
     {
-        
+
         private readonly ApiDbContext dbContext;
         public MovimentacaoController(ApiDbContext dbContext)
         {
@@ -26,8 +26,23 @@ namespace API.Controllers
         [Route("{id:int}")]
         public IActionResult GetMovimentacao([FromRoute] int id)
         {
-            
+
             var movimentacao = dbContext.Movimentacaos.Find(id);
+
+            if (movimentacao == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(movimentacao);
+        }
+
+        [HttpGet]
+        [Route("/user/{id:int}")]
+        public IActionResult GetMovimentacaoUser([FromRoute] int id)
+        {
+
+            var movimentacao = dbContext.Movimentacaos.Where(s => s.UserId == id);
 
             if (movimentacao == null)
             {
@@ -39,10 +54,10 @@ namespace API.Controllers
          [HttpPost]
           public async Task<IActionResult> AddMovimentacao(AddMovimentacaoRequest addMovimentacaoRequest ){
 
-           
+
             var movimetacao = new Movimentacao()
             {
-                
+
                 Tipo = addMovimentacaoRequest.Tipo,
                 ProductId = addMovimentacaoRequest.ProductId,
                 UserId = addMovimentacaoRequest.UserId,
@@ -57,12 +72,12 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            
+
             if (movimetacao.Tipo == "venda")
             {
                 if (product.Quantidade < movimetacao.Quantidade)
                 {
-                    
+
                     return NotFound("Quantidade em estoque, {product.Quantidade}, menor que a venda.");
 
                 }
@@ -73,7 +88,7 @@ namespace API.Controllers
 
             if (movimetacao.Tipo == "compra")
             {
-                
+
                 product.Quantidade = product.Quantidade + movimetacao.Quantidade;
 
             }
@@ -82,25 +97,25 @@ namespace API.Controllers
             await dbContext.SaveChangesAsync();
 
             return Ok("Movimentação Concluida");
-            
+
          }
 
 
         [HttpDelete]
         [Route("{id:int}")]
-        public async Task<IActionResult> DeleteMovimentacao([FromRoute] int id)
+        public async Task<IActionResult> DeleteMovimentacao(int id)
         {
-            
-            var movimentacao = dbContext.Movimentacaos.FindAsync(id);
+
+            var movimentacao = await dbContext.Movimentacaos.FindAsync(id);
 
             if (movimentacao != null)
-            {   
+            {
                 dbContext.Remove(movimentacao);
                 await dbContext.SaveChangesAsync();
-                return Ok();
+                return Ok("Usuário deletado com sucesso");
             }
 
-            return NotFound();
+            return NotFound("Usuário não encontrado");
 
         }
 
