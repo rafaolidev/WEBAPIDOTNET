@@ -12,4 +12,4 @@ Conttruir uma API usando o framework .NET, com os conhecimentos adquiridos em au
 - José Rafael de Oliveira Aranha
 - Antonio Vinicius Ferreira Costa
 - Marcos Alexandre de Andrade Bairo
-- Gabriel Ferreira dos Santos
+- Gabriel Ferreira Santos
