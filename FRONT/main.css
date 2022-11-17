@@ -44,7 +44,7 @@ body{
 	width: 300px;
 	margin: 20px 0 0 100px;
 }
-h2{
+h2, h3{
 	text-align: center;
 	font-size: 18px;
 	text-transform: uppercase;
@@ -257,7 +257,7 @@ button:hover{
   }
 
   /* The Close Button */
-  .close, .close-produto, .close-movimentacao {
+  .close, .close-produto, .close-movimentacao, .close-update-user, .close-update-product {
 	color: #aaaaaa;
 	float: right;
 	font-size: 28px;
@@ -273,6 +273,18 @@ button:hover{
   }
   .close-produto:hover,
   .close-produto:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+  }
+  .close-update-user:hover,
+  .close-update-user:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+  }
+  .close-update-product:hover,
+  .close-update-product:focus {
 	color: #000;
 	text-decoration: none;
 	cursor: pointer;

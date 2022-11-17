@@ -24,7 +24,8 @@ function criarLinha (usuario) {
     tdNome.innerHTML = usuario.name;
     tdNome.innerHTML = usuario.userName;
     tdEmail.innerHTML = usuario.email;
-    tdAcao.innerHTML = `<a class="editar"><button onclick="deleteData(${usuario.id})" class="ver-button">Excluir</button></a>`;
+    tdAcao.innerHTML = `<a class="editar"><button onclick="deleteData(${usuario.id})" class="ver-button">Excluir</button></a>
+    <a class="editar" href="minhasmovimentacoes.html?id=${usuario.id}"><button onclick="" class="ver-button">Movimentações</button></a>`;
 
     linha.appendChild(tdId);
     linha.appendChild(tdNome);
@@ -145,8 +146,8 @@ function criarLinhaMovement (movimentacao) {
     tdTipo.innerHTML = movimentacao.tipo;
     tdQuantidade.innerHTML = movimentacao.quantidade;
     tdData.innerHTML = movimentacao.criadoEm;
-    tdProduto.innerHTML = movimentacao.productId;
-    tdCriador.innerHTML = movimentacao.userId;
+    tdProduto.innerHTML = movimentacao.productname;
+    tdCriador.innerHTML = movimentacao.userName;
 
     linha.appendChild(tdId);
     linha.appendChild(tdTipo);
@@ -205,6 +206,14 @@ function loadMovementData() {
     let userData = JSON.parse(data);
     let tabela = document.getElementById('tabela-movimentacoes');
     userData.forEach(element => {
+
+        let dataP = getProduct(`http://localhost:5095/api/Product/${element.productId}`);
+        let productData = JSON.parse(dataP);
+        let user = getProduct(`http://localhost:5095/api/Users/${element.userId}`);
+        let userDataM = JSON.parse(user);
+        element.productname = productData.name;
+        element.userName = userDataM.userName;
+
         let linha = criarLinhaMovement(element);
         tabela.appendChild(linha)
     });
