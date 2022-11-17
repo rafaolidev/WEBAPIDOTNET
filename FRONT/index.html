@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
-    <title>Document</title>
+    <title>Controle de Estoque</title>
 </head>
 <body>
 
@@ -39,7 +39,6 @@
                     <th>Id</th>
                     <th>Nome</th>
                     <th>Quantidade</th>
-                    <th>Ação</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,14 +50,17 @@
 
     <!-- TABELA DE MOVIMENTAÇÕES -->
     <div class="alunos-tables">
-        <h2>Produtos cadastrados</h2>
+        <h2>Movimentações cadastradas</h2>
         <div class="table-wrapper">
-            <table class="fl-table" id="tabela-movimentações">
+            <table class="fl-table" id="tabela-movimentacoes">
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nome</th>
+                    <th>Tipo</th>
                     <th>Quantidade</th>
+                    <th>Data</th>
+                    <th>Produto</th>
+                    <th>Criador</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -67,6 +69,175 @@
         </div>
     </div>
     <!-- TABELA DE MOVIMENTAÇÕES FIM -->
-    <script src="main.js"></script>
+    <div class="menu">
+        <ul>
+            <li><button id="myBtn" class="menu-button">Cadastrar Usuário</button></li>
+            <li><button id="myBtn-produto" class="menu-button">Cadastrar Produto</button></li>
+            <li><button id="myBtn-movimentacao" class="menu-button">Cadastrar Movimentação</button></li>
+            <li><button id="myBtn-editar-produto" class="menu-button">Editar quantidade</button></li>
+            <li><button id="myBtn-editar-user" class="menu-button">Editar Usuário</button></li>
+        </ul>
+    </div>
+
+    <!-- MODAL EDITAR USUÁRIOS INICIO -->
+
+    <div id="myModal-update-user" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>EDITAÇÃO DE USUÁRIO</h2>
+                <span class="close-update-user">&times;</span>
+            </div>
+          <div class="cadastro-aluno">
+            <script src="optionsuserupdate.js"></script>
+              <form onsubmit="UpdateUser()"  class="cadastro-aluno-form">
+                <label for="usuario">
+                Usuário para update:
+                    <select id="userId-UPDATE">
+                    </select>
+                </label>
+                <label for="usuario">
+                    Nome do Usuário:
+                    <input type="text" id="userName-update" placeholder="Nome do Usuário" required>
+                </label>
+                <label for="email">
+                    E-mail do Usuário:
+                    <input type="email" id="email-update" placeholder="email"required>
+                </label>
+                  <button type="submit">CADASTRAR</button>
+              </form>
+          </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR USUÁRIOS FIM -->
+
+    <!-- MODAL EDITAR QUANTIDADE PRODUTO INICIO -->
+
+    <div id="myModal-update-product" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>AJUSTE MANUAL DE ESTOQUE </h2>
+                <span class="close-update-product">&times;</span>
+            </div>
+          <div class="cadastro-aluno">
+            <script src="optionsupdate.js"></script>
+              <form onsubmit="UpdateProduct()"  class="cadastro-aluno-form">
+                <label for="usuario">
+                Produto para ajuste Manual:
+                    <select id="productId-UPDATE">
+                    </select>
+                </label>
+                <label for="usuario">
+                    Quantidade do ajuste manual
+                    <input type="number" id="quantidade-update"required>
+                </label>
+                  <button type="submit">CADASTRAR</button>
+              </form>
+          </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR QUANTIDADE PRODUTO FIM -->
+
+    <!-- MODAL USUÁRIOS INICIO -->
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>CADASTRO DE USUÁRIOS</h2>
+                <span class="close">&times;</span>
+            </div>
+          <div class="cadastro-aluno">
+            <script src="cadastrouser.js"></script>
+              <form onsubmit="cadastraUser()"  class="cadastro-aluno-form">
+                <label for="usuario">
+                    Nome do Usuário:
+                    <input type="text" id="userName" placeholder="Nome do Usuário" required>
+                </label>
+                <label for="email">
+                    E-mail do Usuário:
+                    <input type="email" id="email" placeholder="email"required>
+                </label>
+                <label for="senha">
+                    Senha do Usuário:
+                    <input type="password" id="senha" placeholder="Senha"required>
+                </label>
+                  <button type="submit">CADASTRAR</button>
+              </form>
+          </div>
+        </div>
+    </div>
+
+<!-- MODAL USUÁRIOS FIM -->
+
+<!-- MODAL PRODUTOS INICIO -->
+
+<div id="myModal-produto" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>CADASTRO DE PRODUTOS</h2>
+            <span class="close-produto">&times;</span>
+        </div>
+      <div class="cadastro-aluno">
+        <script src="cadastroproduto.js"></script>
+          <form onsubmit="cadastraProduto()" class="cadastro-aluno-form">
+            <label for="produto">
+                Nome do Produto:
+                <input type="text" id="name" placeholder="Nome do Produto" required>
+            </label>
+            <label for="produto">
+                Quantidade do Produto:
+                <input type="number" id="quantidade"required>
+            </label>
+              <button type="submit">CADASTRAR</button>
+          </form>
+      </div>
+    </div>
+</div>
+
+<!-- MODAL PRODUTOS FINAL -->
+
+<!-- MODAL MOVIMENTAÇÕES COMEÇO -->
+
+<div id="myModal-movimentacao" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>CADASTRO DE MOVIMENTAÇÕES</h2>
+            <span class="close-movimentacao">&times;</span>
+        </div>
+    <div class="cadastro-aluno">
+        <script src="cadastromovimentacao.js"></script>
+        <form onsubmit="cadastraMoviment()" class="cadastro-aluno-form">
+            <label for="tipo">
+                Tipo de Movimentação:
+                <select id="tipo">
+                    <option value="compra">compra</option>
+                    <option value="venda">venda</option>
+                  </select>
+            </label>
+            <label for="productId">
+                Tipo de Produto:
+                <select id="productId">
+                </select>
+            </label>
+            <label for="userId">
+                Usuário da Movimentação:
+                <select id="userId">
+                </select>
+            </label>
+            <label for="quantidade">
+                Quantidade:
+                <input type="number" id="quantidade-mov"required>
+            </label>
+            <button type="submit">CADASTRAR</button>
+        </form>
+    </div>
+    </div>
+</div>
+
+<!-- MODAL MOVIMENTAÇÕES FINAL -->
+
+<script src="main.js"></script>
+<script src="modal.js"></script>
 </body>
 </html>

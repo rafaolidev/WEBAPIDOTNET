@@ -257,7 +257,7 @@ button:hover{
   }
 
   /* The Close Button */
-  .close, .close-professor, .close-usuario {
+  .close, .close-produto, .close-movimentacao {
 	color: #aaaaaa;
 	float: right;
 	font-size: 28px;
@@ -271,8 +271,8 @@ button:hover{
 	text-decoration: none;
 	cursor: pointer;
   }
-  .close-professor:hover,
-  .close-professor:focus {
+  .close-produto:hover,
+  .close-produto:focus {
 	color: #000;
 	text-decoration: none;
 	cursor: pointer;
@@ -290,8 +290,8 @@ button:hover{
 .danger:-ms-input-placeholder { /* Internet Explorer 10+ */
 	color:  red;
 }
-  .close-usuario:hover,
-  .close-usuario:focus {
+  .close-movimentacao:hover,
+  .close-movimentacao:focus {
 	color: #000;
 	text-decoration: none;
 	cursor: pointer;

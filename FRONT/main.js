@@ -20,7 +20,8 @@ function criarLinha (usuario) {
     tdEmail = document.createElement('td');
     tdAcao = document.createElement('td');
 
-    tdNome.innerHTML = usuario.id;
+    tdId.innerHTML = usuario.id;
+    tdNome.innerHTML = usuario.name;
     tdNome.innerHTML = usuario.userName;
     tdEmail.innerHTML = usuario.email;
     tdAcao.innerHTML = `<a class="editar"><button onclick="deleteData(${usuario.id})" class="ver-button">Excluir</button></a>`;
@@ -59,7 +60,7 @@ function deleteData(id) {
 /* FIM USUÁRIOS */
 
 
-/* Produtos */
+/* PRODUTOS */
 //carrega lista de produtos com request http para api
 function getProduct(url) {
     let request = new XMLHttpRequest()
@@ -116,6 +117,114 @@ function deleteProductData(id) {
 }
 /* FIM PRODUTOS */
 
+/* MOVIMENTAÇÕES */
+//carrega lista de movimentações com request http para api
+function getMovement(url) {
+    let request = new XMLHttpRequest()
+    request.open("GET",url,false)
+    request.send()
+    return request.responseText
+}
+function delelteMovement(url) {
+    let request = new XMLHttpRequest()
+    request.open("DELETE",url,false)
+    request.send()
+}
+//criar linhas da tabela com dados dos movimentações
+function criarLinhaMovement (movimentacao) {
 
+    linha = document.createElement('tr');
+    tdId = document.createElement('td');
+    tdTipo = document.createElement('td');
+    tdQuantidade = document.createElement('td');
+    tdData = document.createElement('td');
+    tdProduto = document.createElement('td');
+    tdCriador = document.createElement('td');
+
+    tdId.innerHTML = movimentacao.id;
+    tdTipo.innerHTML = movimentacao.tipo;
+    tdQuantidade.innerHTML = movimentacao.quantidade;
+    tdData.innerHTML = movimentacao.criadoEm;
+    tdProduto.innerHTML = movimentacao.productId;
+    tdCriador.innerHTML = movimentacao.userId;
+
+    linha.appendChild(tdId);
+    linha.appendChild(tdTipo);
+    linha.appendChild(tdQuantidade);
+    linha.appendChild(tdData);
+    linha.appendChild(tdProduto);
+    linha.appendChild(tdCriador);
+
+    return linha;
+}
+//prenche o options com dados do banco
+function optionsUserId()
+{
+ //DA UM GET NO ENDPOINT DE LISTAR USUARIOS
+ fetch('http://localhost:5095/api/Users')
+ .then(response => response.json())
+ .then((usuarios) =>
+ {
+ //PEGA OPTION VAZIA NO HTML
+ let selUsuarios = document.getElementById('userId');
+
+ //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
+ for(let usuario of usuarios)
+    {
+        let optUsuario = document.createElement('option');
+        optUsuario.innerHTML = usuario.userName;
+        optUsuario.value = usuario.id;
+        selUsuarios.appendChild(optUsuario);
+    }
+    })
+}
+//prenche o options com dados do banco
+function optionsProductId()
+{
+ //DA UM GET NO ENDPOINT DE LISTAR USUARIOS
+ fetch('http://localhost:5095/api/Product')
+ .then(response => response.json())
+ .then((produtos) =>
+ {
+ //PEGA OPTION VAZIA NO HTML
+ let selProdutos = document.getElementById('productId')
+
+ //PREENCHE ELA COM O NOME E O ID DOS USUARIOS
+ for(let produto of produtos)
+ {
+ let optProduto = document.createElement('option')
+ optProduto.innerHTML = produto.name
+ optProduto.value = produto.id
+ selProdutos.appendChild(optProduto)
+ }
+ })
+}
+// carrega a lista de movimentações fazendo uma request para api
+function loadMovementData() {
+    let data = getMovement('http://localhost:5095/api/Movimentacao');
+    let userData = JSON.parse(data);
+    let tabela = document.getElementById('tabela-movimentacoes');
+    userData.forEach(element => {
+        let linha = criarLinhaMovement(element);
+        tabela.appendChild(linha)
+    });
+}
+//função que deleta registro
+function deleteMovementData(id) {
+
+    var deleteConfirm = prompt("Tem certeza que quer apagar o registro? digite 'SIM'");
+
+    if ( deleteConfirm.toUpperCase() == "SIM") {
+        delelteMovement(`http://localhost:5095/api/Movimentacao/${id}`);
+        setTimeout(() => {
+            document.location.reload(true)
+        }, 1000);
+      alert("Registro Deletado");
+    }
+}
+/* FIM PRODUTOS */
+optionsProductId();
+optionsUserId();
+loadMovementData();
 loadProductData();
 loadUserData();
